@@ -1,8 +1,6 @@
-import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
+
 
 import javax.imageio.ImageIO;
 
@@ -18,16 +16,16 @@ public class Photo implements Comparable<Photo> {
 	// field variables
 	private final String caption;
 	private final String filename;
-	private int rating = 1;
-	private String dateTaken = "1901-01-01";
+	private int rating;
+	private String dateTaken;
 	protected BufferedImage imageData;
 
 	// constructor for Photo object
 	public Photo(String filename, String caption) {
 		this.filename = filename;
 		this.caption = caption;
-		this.rating = 1;
 		this.dateTaken = "1901-01-01";
+		this.rating = 1;
 	}
 
 	// overloaded constructor for Photo object
@@ -37,9 +35,11 @@ public class Photo implements Comparable<Photo> {
 		if (rating >= 1 && rating <= 5) {
 			this.rating = rating;
 		}
+		else this.rating = 1; 
 		if (DateLibrary.isValidDate(dateTaken)) {
 			this.dateTaken = dateTaken;
 		}
+		else this.dateTaken = "1901-01-01";
 	}
 
 	// getter methods
@@ -79,9 +79,7 @@ public class Photo implements Comparable<Photo> {
 	public boolean equals(Object o) {
 		if (o instanceof Photo) {
 			Photo other = (Photo) o;
-			if (this.caption.equals(other.caption) & this.filename.equals(other.filename)) {
-				return true;
-			}
+			return this.caption.equals(other.caption) & this.filename.equals(other.filename);
 		}
 		return false;
 	}

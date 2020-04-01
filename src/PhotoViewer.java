@@ -1,5 +1,4 @@
 import java.awt.BorderLayout;
-import java.awt.ComponentOrientation;
 import java.awt.Container;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
@@ -36,18 +35,18 @@ public class PhotoViewer extends JFrame {
 		PhotoViewer myViewer = new PhotoViewer();
 
 		String imageDirectory = "images\\"; // for Windows
-		Photo p1 = new Photo("Kevin Durant's jumpshot in the 2012 NBA finals", imageDirectory + "img1.jpg",
+		Photo p1 = new Photo(imageDirectory + "img1.jpg", "Kevin Durant's jumpshot in the 2012 NBA finals",
 				"2012-06-14", 5);
 		p1.loadImageData(imageDirectory + " img1.jpg ");
-		Photo p2 = new Photo("Russell Westbrook's dunk", imageDirectory + "img2.jpg", "2014-11-27", 4);
+		Photo p2 = new Photo(imageDirectory + "img2.jpg", "Russell Westbrook's dunk", "2014-11-27", 4);
 		p2.loadImageData(imageDirectory + " img2.jpg ");
-		Photo p3 = new Photo("Beautiful Hawaiian hills overlooking the ocean", imageDirectory + "img3.jpg",
+		Photo p3 = new Photo( imageDirectory + "img3.jpg","Beautiful Hawaiian hills overlooking the ocean",
 				"2007-09-08", 3);
 		p3.loadImageData(imageDirectory + " img3.jpg ");
-		Photo p4 = new Photo("Kobe Bryant's game winner over the Phoenix Suns", imageDirectory + "img4.jpg",
+		Photo p4 = new Photo( imageDirectory + "img4.jpg", "Kobe Bryant's game winner over the Phoenix Suns",
 				" 2006-04-17", 5);
 		p4.loadImageData(imageDirectory + " img4.jpg ");
-		Photo p5 = new Photo("Waterfalls and mountains", imageDirectory + "img5.jpg", "1997-02-24", 2);
+		Photo p5 = new Photo(imageDirectory + "img5.jpg",  "Waterfalls and mountains","1997-02-24", 2);
 		p5.loadImageData(imageDirectory + " img5.jpg ");
 
 		myViewer.setImageLibrary(new Library("Test Library", 1));
@@ -74,7 +73,7 @@ public class PhotoViewer extends JFrame {
 		this.setVisible(true);
 	}
 
-	public void addComponentsToPane(Container pane) {
+	private void addComponentsToPane(Container pane) {
 		
 		class nextButtonListener implements ActionListener { // ** INNER CLASS **
 			@Override
@@ -126,16 +125,16 @@ public class PhotoViewer extends JFrame {
 		panel2.add(migrate5Button);
 
 	
-	/*
+
 		int index = 0;
 		Photo ph = imageLibrary.getPhotos().get(index);
 		ph.loadImageData(ph.getFilename());
-		//BufferedImage myBufferedImage = ph.getImageData();
+		BufferedImage myBufferedImage = ph.getImageData();
 		ImageIcon icon = new ImageIcon(ph.getImageData());
 		JLabel lbl = new JLabel();
 		lbl.setIcon(icon);
 		pane.add(lbl);
-*/
+
 		// add this panel to the content pane
 		pane.add(panel1, BorderLayout.NORTH);
 		pane.add(panel2, BorderLayout.SOUTH);

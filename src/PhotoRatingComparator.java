@@ -6,7 +6,7 @@
 
 import java.util.Comparator;
 
-public PhotoRatingComparator implements Comparator<Photo> {
+public class PhotoRatingComparator implements Comparator<Photo> {
 
 	/**
 	 * Compares two Photo objects based on their rating values. If both are equal,

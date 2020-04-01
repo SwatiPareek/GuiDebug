@@ -56,7 +56,7 @@ public class Library extends PhotoContainer {
 
 		// should return 0.5
 		System.out.println(similarity(album1, album2));
-		System.out.println(album1.createAlbum("Soccer game"));
+		System.out.println(album1.createAlbum());
 		System.out.println(album1.getAlbums());
 	}
 
@@ -77,7 +77,7 @@ public class Library extends PhotoContainer {
 		return id;
 	}
 
-	public HashSet<Album> getAlbums() {
+	private HashSet<Album> getAlbums() {
 		return albums;
 	}
 
@@ -107,9 +107,7 @@ public class Library extends PhotoContainer {
 	public boolean equals(Object o) {
 		if (o instanceof Library) {
 			Library other = (Library) o;
-			if (this.id == other.id) {
-				return true;
-			}
+			return this.id == other.id;
 		}
 		return false;
 	}
@@ -120,7 +118,7 @@ public class Library extends PhotoContainer {
 	}
 
 	// method that finds the common photos between both libraries
-	public static ArrayList<Photo> commonPhotos(Library a, Library b) {
+	private static ArrayList<Photo> commonPhotos(Library a, Library b) {
 		ArrayList<Photo> newList = new ArrayList<Photo>();
 		for (int i = 0; i < a.photos.size(); i++) { // nested for-loop to access all elements
 			for (int j = 0; j < b.photos.size(); j++) {
@@ -133,7 +131,7 @@ public class Library extends PhotoContainer {
 	}
 
 	// method that compute a scale as to how similar two libraries are
-	public static double similarity(Library a, Library b) {
+	private static double similarity(Library a, Library b) {
 		if (a.photos.size() == 0 || b.photos.size() == 0) {
 			return 0.0;
 		}
@@ -144,20 +142,20 @@ public class Library extends PhotoContainer {
 	}
 
 	// method to create a new album with a name as a parameter
-	public boolean createAlbum(String albumName) {
+	private boolean createAlbum() {
 		for (Album a : albums) {
-			if (a.getName() == albumName)
+			if (a.getName().equals("Soccer game"))
 				return false;
 		}
-		Album newalbum = new Album(albumName);
+		Album newalbum = new Album("Soccer game");
 		albums.add(newalbum);
 		return true;
 	}
 
 	// removes album with the name albumName
-	public boolean removeAlbum(String albumName) {
+	private boolean removeAlbum(String albumName) {
 		for (Album a : albums) {
-			if (a.getName() == albumName) {
+			if (a.getName().equals(albumName)) {
 				albums.remove(a);
 				return true;
 			}
@@ -168,7 +166,7 @@ public class Library extends PhotoContainer {
 	// adds a photo to an existing album
 	public boolean addPhotoToAlbum(Photo p, String albumName) {
 		for (Album a : albums) {
-			if (a.getName() == albumName) {
+			if (albumName.equals(a.getName())) {
 				if (photos.contains(p) && !(a.getPhotos().contains(albumName))) {
 					a.addPhoto(p);
 					return true;
